@@ -34,10 +34,6 @@ public class Gui {
 		frame.add(lbldraw);
 		
 		frame.setVisible(true);
-		
-		
-		
-		//TEST
 	}
 
 }

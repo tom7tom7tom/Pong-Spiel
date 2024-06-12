@@ -14,6 +14,7 @@ public class BeweglichesRechteck extends GameObject {
 	
 	
 	public void automatischeKreisbewegung() {
+
 		if(richtung == 0) {
 			positionX += 1;
 		} else if (richtung == 1) {

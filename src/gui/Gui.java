@@ -5,14 +5,14 @@ import javax.swing.JFrame;
 import actions.KeyHandler;
 import game.GameLogic;
 
-public class Gui {
-	
+public class Gui 
+{	
 	private int screenwidth;
 	private int screenheight;
 	private JFrame frame;
 	
-	public Gui(GameLogic spiellogik) {
-		
+	public Gui(GameLogic spiellogik) 
+	{
 		screenwidth = 800;
 		screenheight = 600;
 		spiellogik.screenwidth = screenwidth;

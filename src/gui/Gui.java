@@ -28,11 +28,6 @@ public class Gui {
 		frame.addKeyListener(new KeyHandler(spiellogik));
 		frame.requestFocus();
 		
-		Score score = new Score(spiellogik);
-		score.setBounds(0, 0, 100, 20);
-		score.setVisible(true);
-		frame.add(score);
-		
 		Draw lbldraw = new Draw(spiellogik, screenwidth, screenheight);
 		lbldraw.setBounds(0,0, screenwidth, screenheight);
 		lbldraw.setVisible(true);

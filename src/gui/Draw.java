@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import game.GameLogic;
 import game.GameObject;
+import gameObjects.Ball;
 
 @SuppressWarnings("serial")
 public class Draw extends JLabel{
@@ -36,7 +37,15 @@ public class Draw extends JLabel{
 		for (int i = 0; i < objekteImSpiel.size(); i++) {
 			GameObject aktuellesObjekt = objekteImSpiel.get(i);
 			g.fillRect(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
+			
+			
 		}
+		
+			//g.fillOval(ball.positionX, ball.positionY, Ball.class, groesseX);
+		
+		
+		
+		
 		
 		repaint();
 	}

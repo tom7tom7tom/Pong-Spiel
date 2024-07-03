@@ -6,7 +6,8 @@ import java.util.TimerTask;
 
 import gameObjects.BeweglichesRechteck;
 
-public class GameLogic {
+public class GameLogic 
+{
 	
 	private Timer gameTimer;
 	public int screenwidth;
@@ -16,7 +17,8 @@ public class GameLogic {
 	public boolean keyLeftarrowpressed;
 	public boolean keyRightarrowpressed;
 	
-	public GameLogic() {
+	public GameLogic() 
+	{
 		gameTimer = new Timer();
 		spielObjekte = new ArrayList<GameObject>();
 		
@@ -30,15 +32,19 @@ public class GameLogic {
 		BeweglichesRechteck beispielObjekt2 = new BeweglichesRechteck(300, 400, 20, 20);
 		spielObjekte.add(beispielObjekt2);
 		
-		gameTimer.scheduleAtFixedRate(new TimerTask(){
+		gameTimer.scheduleAtFixedRate(new TimerTask()
+		{
 			@Override
 			public void run() {
 				// Laufende Ausführungen im Spiel:
 				beispielObjekt1.automatischeKreisbewegung();
 				
-				if (keyLeftarrowpressed) {
+				if (keyLeftarrowpressed) 
+				{
 					beispielObjekt2.positionX -= 1;
-				} else if (keyRightarrowpressed) {
+				}
+				 else if (keyRightarrowpressed) 
+				{
 					beispielObjekt2.positionX += 1;
 				}
 			}

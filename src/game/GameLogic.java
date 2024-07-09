@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import java.awt.*;
+
 import gameObjects.Ball;
 import gameObjects.BeweglichesRechteck;
-import gui.Gui;
-
-import java.awt.Rectangle;
-
+import gui.Draw;
 
 public class GameLogic {
 	
@@ -19,8 +18,9 @@ public class GameLogic {
 	public ArrayList<GameObject> spielObjekte;
 	
 	final static int ballDiameter = 20;
-	
+	public int paddleSpeed = 2;
 	public int scoreLeft = 0;
+	public int scoreRight = 0;
 	
 	public boolean keyLeftarrowpressed;
 	public boolean keyRightarrowpressed;
@@ -42,7 +42,7 @@ public class GameLogic {
 		Ball ball = new Ball((screenwidth/2)-(ballDiameter/2),(screenheight/2)-(ballDiameter/2), ballDiameter, ballDiameter);
 		spielObjekte.add(ball);
 		
-		BeweglichesRechteck leftPaddle = new BeweglichesRechteck(90, 100, 20, 100);
+		BeweglichesRechteck leftPaddle = new BeweglichesRechteck(70, 100, 20, 100);
 		spielObjekte.add(leftPaddle);
 		leftPaddle.richtung = 0; // Startrichtung
 		BeweglichesRechteck rightPaddle = new BeweglichesRechteck(710, 400, 20, 100);
@@ -63,14 +63,14 @@ public class GameLogic {
 				//beispielObjekt3.automatischeBallbewegung();
 				
 				if (keyLeftarrowpressed) {
-					leftPaddle.positionY -= 1;// key W
+					leftPaddle.positionY -= paddleSpeed;// key W
 				} else if (keyRightarrowpressed) {
-					leftPaddle.positionY += 1;// Key S
+					leftPaddle.positionY += paddleSpeed;// Key S
 				}
 				if (keyUParrowpressed) {
-					rightPaddle.positionY -= 1;// Key UP
+					rightPaddle.positionY -= paddleSpeed;// Key UP
 				} else if (keyDownarrowpressed) {
-					rightPaddle.positionY += 1;// Key Down
+					rightPaddle.positionY += paddleSpeed;// Key Down
 				}
 				
 			}
@@ -109,6 +109,22 @@ public class GameLogic {
 					ball.yVelocity--;
 				ball.setXDirection(-ball.xVelocity);
 				ball.setYDirection(ball.yVelocity);
+			}
+			
+			//give a leftPaddle point and ####later####  creates new paddles and ball ####later####
+			if(ball.positionX <= 0) {
+				scoreLeft++;
+				
+				//newPaddles();
+				//newBall();
+				System.out.println("Player 2:" + scoreLeft);
+			}
+			//give the right paddle a point and ####later####creates new paddles and ball ####later####
+			if(ball.positionX >= screenwidth-ballDiameter) {
+				scoreRight++;
+				//newPaddles();
+				//newBall();
+				System.out.println("Player 1:" + scoreRight);
 			}
 	}
 	

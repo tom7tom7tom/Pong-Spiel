@@ -12,7 +12,7 @@ public class Ball extends GameObject{
 		Random random;
 		public int xVelocity;
 		public int yVelocity;
-		public int initialSpeed = 2;
+		public int initialSpeed = 1;
 		
 		public Ball(int x, int y, int width, int height) {
 			super(x, y, width, height);

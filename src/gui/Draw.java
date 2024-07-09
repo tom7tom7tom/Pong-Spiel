@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 
 import game.GameLogic;
 import game.GameObject;
-import gameObjects.Ball;
 
 @SuppressWarnings("serial")
 public class Draw extends JLabel{

@@ -27,6 +27,7 @@ public class GameLogic {
 	
 	public boolean keyUParrowpressed;
 	public boolean keyDownarrowpressed;
+
 	
 	public GameLogic() {
 		//Gui.screenwidth = 800;
@@ -38,7 +39,12 @@ public class GameLogic {
 		keyLeftarrowpressed = false;
 		keyRightarrowpressed = false;
 		
+		
+		
+		
+		
 		// Objekte im Spiel:
+
 		Ball ball = new Ball((screenwidth/2)-(ballDiameter/2),(screenheight/2)-(ballDiameter/2), ballDiameter, ballDiameter);
 		spielObjekte.add(ball);
 		
@@ -51,11 +57,14 @@ public class GameLogic {
 		//spielObjekte.add(beispielObjekt3);
 		System.out.println("" + ((screenwidth/2)-(ballDiameter/2)) + "    " + ((screenheight/2)-(ballDiameter/2)) + "   " + ballDiameter);
 		
+
 		
 		gameTimer.scheduleAtFixedRate(new TimerTask(){
 			@Override
 			public void run() {
 				// Laufende Ausführungen im Spiel:
+
+			
 				
 				ball.move();
 				System.out.println(ball.positionX + "+" + ball.positionY);
@@ -72,6 +81,8 @@ public class GameLogic {
 				} else if (keyDownarrowpressed) {
 					rightPaddle.positionY += paddleSpeed;// Key Down
 				}
+				
+
 				
 			}
 		}, 0, 5);

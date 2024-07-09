@@ -1,5 +1,8 @@
 package gameObjects;
 
+import java.awt.desktop.SystemSleepEvent;
+import java.util.Random;
+
 import game.GameObject;
 
 public class BeweglichesRechteck extends GameObject {
@@ -11,13 +14,40 @@ public class BeweglichesRechteck extends GameObject {
 	public int Unden;
 	public int Oben;
 
+	public int TorRechts;
+	public int TorLinks;
+	public int EndStart;
+
+
 	public BeweglichesRechteck(int posX, int posY, int breite, int hoehe) {
 		super(posX, posY, breite, hoehe);
 		schritteInGleicherRichtung = 0;
-		rechts = 1;
-		links = 0;
+
+
+		Random rnd = new Random();
+		double RL =rnd.nextInt(2) ;
+		double UO = rnd.nextInt(2);
+		
+		TorLinks = 0;
+		TorRechts = 0;
+		EndStart = 0;
+		
+		if (RL  == 1){
+			rechts = 1;
+			links = 0;
+		}else {
+		rechts = 0;
+
+		links = 1;
+		}
+		if (UO == 1) {
 		Unden = 1;
 		Oben = 0;
+		}else {
+		Unden = 0;
+		Oben = 1;
+		}
+
 	}
 	
 	
@@ -99,10 +129,43 @@ public class BeweglichesRechteck extends GameObject {
 			if (positionX == 700) {
 				rechts = 0;
 				links = 1;
+
 			}
 			if (positionX == 100) {
 				rechts = 1;
 				links = 0;
+
+				TorLinks++;    // Tor Links
+				EndStart = 1;
+			}
+			
+			if(EndStart == 1) {
+				positionY = 270;
+				positionX = 400;
+				
+				Random rnd = new Random();
+				double RL =rnd.nextInt(2) ;
+				double UO = rnd.nextInt(2);
+				
+				if (RL  == 1){
+					rechts = 1;
+					links = 0;
+				}else {
+				rechts = 0;
+
+				links = 1;
+				}
+				if (UO == 1) {
+				Unden = 1;
+				Oben = 0;
+				}else {
+				Unden = 0;
+				Oben = 1;
+				
+				}
+				EndStart = 0;
+				
+
 			}
 			
 			
@@ -119,4 +182,15 @@ public class BeweglichesRechteck extends GameObject {
 				}
 				
 	}
+
 }
+
+		
+			
+			
+			
+			
+			
+			
+			
+		

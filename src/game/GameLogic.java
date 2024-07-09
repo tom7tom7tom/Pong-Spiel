@@ -6,13 +6,16 @@ import java.util.TimerTask;
 
 import gameObjects.Ball;
 import gameObjects.BeweglichesRechteck;
+import gui.Gui;
+
+import java.awt.Rectangle;
 
 
 public class GameLogic {
 	
 	private Timer gameTimer;
-	public int screenwidth;
-	public int screenheight;
+	public int screenwidth = 800;
+	public int screenheight = 600;
 	public ArrayList<GameObject> spielObjekte;
 	
 	final static int ballDiameter = 20;
@@ -26,6 +29,9 @@ public class GameLogic {
 	public boolean keyDownarrowpressed;
 	
 	public GameLogic() {
+		//Gui.screenwidth = 800;
+		//Gui.screenheight = 600;
+		
 		gameTimer = new Timer();
 		spielObjekte = new ArrayList<GameObject>();
 		
@@ -33,38 +39,83 @@ public class GameLogic {
 		keyRightarrowpressed = false;
 		
 		// Objekte im Spiel:
-		BeweglichesRechteck beispielObjekt1 = new BeweglichesRechteck(90, 100, 20, 20);
-		spielObjekte.add(beispielObjekt1);
-		beispielObjekt1.richtung = 0; // Startrichtung
-		BeweglichesRechteck beispielObjekt2 = new BeweglichesRechteck(710, 400, 20, 20);
-		spielObjekte.add(beispielObjekt2);
+		Ball ball = new Ball((screenwidth/2)-(ballDiameter/2),(screenheight/2)-(ballDiameter/2), ballDiameter, ballDiameter);
+		spielObjekte.add(ball);
+		
+		BeweglichesRechteck leftPaddle = new BeweglichesRechteck(90, 100, 20, 100);
+		spielObjekte.add(leftPaddle);
+		leftPaddle.richtung = 0; // Startrichtung
+		BeweglichesRechteck rightPaddle = new BeweglichesRechteck(710, 400, 20, 100);
+		spielObjekte.add(rightPaddle);
 		//BeweglichesRechteck beispielObjekt3 = new BeweglichesRechteck(400, 400, 20, 20);
 		//spielObjekte.add(beispielObjekt3);
 		System.out.println("" + ((screenwidth/2)-(ballDiameter/2)) + "    " + ((screenheight/2)-(ballDiameter/2)) + "   " + ballDiameter);
-		Ball ball = new Ball((screenwidth/2)-(ballDiameter/2),(screenheight/2)-(ballDiameter/2), ballDiameter, ballDiameter);
-		spielObjekte.add(ball);
+		
 		
 		gameTimer.scheduleAtFixedRate(new TimerTask(){
 			@Override
 			public void run() {
 				// Laufende Ausführungen im Spiel:
 				
-				
+				ball.move();
+				System.out.println(ball.positionX + "+" + ball.positionY);
+				checkCollision(ball, rightPaddle, leftPaddle);
 				//beispielObjekt3.automatischeBallbewegung();
 				
 				if (keyLeftarrowpressed) {
-					beispielObjekt1.positionY -= 1;// key W
+					leftPaddle.positionY -= 1;// key W
 				} else if (keyRightarrowpressed) {
-					beispielObjekt1.positionY += 1;// Key S
+					leftPaddle.positionY += 1;// Key S
 				}
 				if (keyUParrowpressed) {
-					beispielObjekt2.positionY -= 1;// Key UP
+					rightPaddle.positionY -= 1;// Key UP
 				} else if (keyDownarrowpressed) {
-					beispielObjekt2.positionY += 1;// Key Down
+					rightPaddle.positionY += 1;// Key Down
 				}
 				
 			}
 		}, 0, 5);
 	}
 	
+	public void checkCollision(Ball ball, BeweglichesRechteck rightPaddle, BeweglichesRechteck leftPaddle) {
+		//bounce ball off top & bottom window edges
+			if(ball.positionY <= 0) {
+				ball.setYDirection(-ball.yVelocity);
+			}
+			if(ball.positionY >= screenheight - ballDiameter) {
+				ball.setYDirection(-ball.yVelocity);
+			}
+		
+		//bounces ball off paddles
+			if(intersects(ball, leftPaddle)) {
+				ball.xVelocity = Math.abs(ball.xVelocity);
+				//increase the Velocity after it bounces off a paddle
+				ball.xVelocity++; 		//optional for more difficulty
+				if(ball.yVelocity > 0)
+					ball.yVelocity++;	//optional for more difficulty
+				else
+					ball.yVelocity--;
+				ball.setXDirection(ball.xVelocity);
+				ball.setYDirection(ball.yVelocity);
+			}
+			
+			if(intersects(ball, rightPaddle)) {
+				ball.xVelocity = Math.abs(ball.xVelocity);
+				//increase the Velocity after it bounces off a paddle
+				ball.xVelocity++; 		//optional for more difficulty
+				if(ball.yVelocity > 0)
+					ball.yVelocity++;	//optional for more difficulty
+				else
+					ball.yVelocity--;
+				ball.setXDirection(-ball.xVelocity);
+				ball.setYDirection(ball.yVelocity);
+			}
+	}
+	
+	public boolean intersects(Ball ball, BeweglichesRechteck Paddle) {
+        return (Paddle.positionX < ball.positionX + ballDiameter &&
+                Paddle.positionX + Paddle.groesseX > ball.positionX &&
+                Paddle.positionY < ball.positionY + ballDiameter &&
+                Paddle.positionY + Paddle.groesseY > ball.positionY);
+    }
 }

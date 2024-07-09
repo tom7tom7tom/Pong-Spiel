@@ -10,9 +10,9 @@ import game.GameObject;
 
 public class Ball extends GameObject{
 		Random random;
-		int xVelocity;
-		int yVelocity;
-		int initialSpeed = 2;
+		public int xVelocity;
+		public int yVelocity;
+		public int initialSpeed = 2;
 		
 		public Ball(int x, int y, int width, int height) {
 			super(x, y, width, height);

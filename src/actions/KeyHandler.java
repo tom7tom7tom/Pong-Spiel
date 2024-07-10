@@ -25,6 +25,12 @@ public class KeyHandler implements KeyListener
 	public void keyPressed(KeyEvent e) 
 	{
 
+
+		if (e.getKeyCode() == KeyEvent.VK_W) {
+			gamelogic.keyLeftarrowpressed = true;
+		
+		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) 
 		{
 			gamelogic.keyLeftarrowpressed = true;
@@ -34,11 +40,22 @@ public class KeyHandler implements KeyListener
 		{
 			gamelogic.keyRightarrowpressed = true;
 		}
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			gamelogic.keyUParrowpressed = true;
+		
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			gamelogic.keyDownarrowpressed = true;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
+
+
+		if (e.getKeyCode() == KeyEvent.VK_W) {
+			gamelogic.keyLeftarrowpressed = false;
+		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) 
 		{
@@ -46,9 +63,13 @@ public class KeyHandler implements KeyListener
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) 
 		{
+
 			gamelogic.keyRightarrowpressed = false;
 		}
-		
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			gamelogic.keyUParrowpressed = false;
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			gamelogic.keyDownarrowpressed = false;
+		}
 	}
-
 }

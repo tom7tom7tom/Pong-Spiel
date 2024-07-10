@@ -15,6 +15,8 @@ public class Draw extends JLabel
 	private int screenwidth;
 	private int screenheight;
 	ArrayList<GameObject> objekteImSpiel;
+	
+	boolean isBall = true;
 
 	public Draw(GameLogic spiellogik, int screenBreite, int screenHoehe)
 	{
@@ -39,8 +41,20 @@ public class Draw extends JLabel
 		for (int i = 0; i < objekteImSpiel.size(); i++)
 		{
 			GameObject aktuellesObjekt = objekteImSpiel.get(i);
+			if(isBall) {
+				g.fillOval(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
+				isBall = false;
+			}
 			g.fillRect(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
+				
+			
 		}
+		
+			//g.fillOval(ball.positionX, ball.positionY, Ball.class, groesseX);
+		
+		
+		
+		
 		
 		repaint();
 	}

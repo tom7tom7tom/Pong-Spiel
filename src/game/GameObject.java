@@ -17,5 +17,13 @@ public class GameObject
 		groesseX = breite;
 		groesseY = hoehe;
 	}
+	
+	public void setPosX(int x) {
+		positionX = x;
+	}
+	
+	public void setPosY(int y) {
+		positionY = y;
+	}
 
 }

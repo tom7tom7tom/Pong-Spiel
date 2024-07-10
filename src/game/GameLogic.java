@@ -10,7 +10,8 @@ import gameObjects.Ball;
 import gameObjects.BeweglichesRechteck;
 import gui.Draw;
 
-public class GameLogic {
+public class GameLogic 
+{
 	
 	private Timer gameTimer;
 	public int screenwidth = 800;
@@ -26,13 +27,16 @@ public class GameLogic {
 	public boolean keyLeftarrowpressed;
 	public boolean keyRightarrowpressed;
 	
+
 	public boolean keyUParrowpressed;
 	public boolean keyDownarrowpressed;
 	
 	public GameLogic() {
 		//Gui.screenwidth = 800;
 		//Gui.screenheight = 600;
-		
+	public GameLogic() 
+	{
+
 		gameTimer = new Timer();
 		spielObjekte = new ArrayList<GameObject>();
 		
@@ -53,7 +57,8 @@ public class GameLogic {
 		System.out.println("" + ((screenwidth/2)-(ballDiameter/2)) + "    " + ((screenheight/2)-(ballDiameter/2)) + "   " + ballDiameter);
 		
 		
-		gameTimer.scheduleAtFixedRate(new TimerTask(){
+		gameTimer.scheduleAtFixedRate(new TimerTask()
+		{
 			@Override
 			public void run() {
 				// Laufende Ausführungen im Spiel:
@@ -67,6 +72,15 @@ public class GameLogic {
 					leftPaddle.positionY -= paddleSpeed;// key W
 				} else if (keyRightarrowpressed) {
 					leftPaddle.positionY += paddleSpeed;// Key S
+
+				if (keyLeftarrowpressed) 
+				{
+					beispielObjekt2.positionX -= 1;
+				}
+				 else if (keyRightarrowpressed) 
+				{
+					beispielObjekt2.positionX += 1;
+
 				}
 				if (keyUParrowpressed) {
 					rightPaddle.positionY -= paddleSpeed;// Key UP

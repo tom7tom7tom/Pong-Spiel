@@ -9,8 +9,7 @@ import game.GameLogic;
 import game.GameObject;
 
 @SuppressWarnings("serial")
-public class Draw extends JLabel
-{
+public class Draw extends JLabel{
 	
 	private int screenwidth;
 	private int screenheight;
@@ -18,15 +17,13 @@ public class Draw extends JLabel
 	
 	boolean isBall = true;
 
-	public Draw(GameLogic spiellogik, int screenBreite, int screenHoehe)
-	{
+	public Draw(GameLogic spiellogik, int screenBreite, int screenHoehe) {
 		objekteImSpiel = spiellogik.spielObjekte;
 		screenwidth = screenBreite;
 		screenheight = screenHoehe;
 	}
 	
-	public void paintComponent(Graphics g)
-	{
+	public void paintComponent(Graphics g){
 		
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
@@ -38,8 +35,7 @@ public class Draw extends JLabel
 		
 		// Zeichne alle Spielobjekte
 		g.setColor(Color.WHITE);
-		for (int i = 0; i < objekteImSpiel.size(); i++)
-		{
+		for (int i = 0; i < objekteImSpiel.size(); i++) {
 			GameObject aktuellesObjekt = objekteImSpiel.get(i);
 			if(isBall) {
 				g.fillOval(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);

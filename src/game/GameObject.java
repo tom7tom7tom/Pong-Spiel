@@ -1,7 +1,6 @@
 package game;
 
-public class GameObject
-{
+public class GameObject {
 
 	public int groesseX;
 	public int groesseY;
@@ -10,8 +9,7 @@ public class GameObject
 	public int positionY;
 	
 
-	public GameObject(int posX, int posY, int breite, int hoehe)
-	{
+	public GameObject(int posX, int posY, int breite, int hoehe) {
 		positionX = posX;
 		positionY = posY;
 		groesseX = breite;

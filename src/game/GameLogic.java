@@ -10,8 +10,7 @@ import gameObjects.Ball;
 import gameObjects.BeweglichesRechteck;
 import gui.Draw;
 
-public class GameLogic 
-{
+public class GameLogic {
 	
 	private Timer gameTimer;
 	public int screenwidth = 800;
@@ -27,16 +26,13 @@ public class GameLogic
 	public boolean keyLeftarrowpressed;
 	public boolean keyRightarrowpressed;
 	
-
 	public boolean keyUParrowpressed;
 	public boolean keyDownarrowpressed;
 	
 	public GameLogic() {
 		//Gui.screenwidth = 800;
 		//Gui.screenheight = 600;
-	public GameLogic() 
-	{
-
+		
 		gameTimer = new Timer();
 		spielObjekte = new ArrayList<GameObject>();
 		
@@ -57,8 +53,7 @@ public class GameLogic
 		System.out.println("" + ((screenwidth/2)-(ballDiameter/2)) + "    " + ((screenheight/2)-(ballDiameter/2)) + "   " + ballDiameter);
 		
 		
-		gameTimer.scheduleAtFixedRate(new TimerTask()
-		{
+		gameTimer.scheduleAtFixedRate(new TimerTask(){
 			@Override
 			public void run() {
 				// Laufende Ausführungen im Spiel:
@@ -72,15 +67,6 @@ public class GameLogic
 					leftPaddle.positionY -= paddleSpeed;// key W
 				} else if (keyRightarrowpressed) {
 					leftPaddle.positionY += paddleSpeed;// Key S
-
-				if (keyLeftarrowpressed) 
-				{
-					beispielObjekt2.positionX -= 1;
-				}
-				 else if (keyRightarrowpressed) 
-				{
-					beispielObjekt2.positionX += 1;
-
 				}
 				if (keyUParrowpressed) {
 					rightPaddle.positionY -= paddleSpeed;// Key UP
@@ -105,9 +91,9 @@ public class GameLogic
 			if(intersects(ball, leftPaddle)) {
 				ball.xVelocity = Math.abs(ball.xVelocity);
 				//increase the Velocity after it bounces off a paddle
-				ball.xVelocity++; 		//optional for more difficulty
+				ball.xVelocity += 0.2; 		//optional for more difficulty
 				if(ball.yVelocity > 0)
-					ball.yVelocity++;	//optional for more difficulty
+					ball.yVelocity += 0.2;	//optional for more difficulty
 				else
 					ball.yVelocity--;
 					ball.setXDirection(ball.xVelocity);
@@ -117,29 +103,25 @@ public class GameLogic
 			if(intersects(ball, rightPaddle)) {
 				ball.xVelocity = Math.abs(ball.xVelocity);
 				//increase the Velocity after it bounces off a paddle
-				ball.xVelocity++; 		//optional for more difficulty
+				ball.xVelocity += 0.2; 		//optional for more difficulty
 				if(ball.yVelocity > 0)
-					ball.yVelocity++;	//optional for more difficulty
+					ball.yVelocity += 0.2;	//optional for more difficulty
 				else
 					ball.yVelocity--;
 					ball.setXDirection(-ball.xVelocity);
 					ball.setYDirection(ball.yVelocity);
 			}
 			
-			//give a leftPaddle point and ####later####  creates new paddles and ball ####later####
+			//give a leftPaddle point and sets the positions on start
 			if(ball.positionX <= 0) {
 				scoreLeft++;
 				newSet(ball);
-				//newPaddles();
-				//newBall();
 				System.out.println("Player 2:" + scoreLeft);
 			}
-			//give the right paddle a point and ####later####creates new paddles and ball ####later####
+			//give the right paddle a point and sets the positions on start
 			if(ball.positionX >= screenwidth-ballDiameter) {
 				scoreRight++;
 				newSet(ball);
-				//newPaddles();
-				//newBall();
 				System.out.println("Player 1:" + scoreRight);
 			}
 			

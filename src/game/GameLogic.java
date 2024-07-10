@@ -18,6 +18,7 @@ public class GameLogic {
 	public ArrayList<GameObject> spielObjekte;
 	
 	final static int ballDiameter = 20;
+	public int paddleHeight = 100;
 	public int paddleSpeed = 2;
 	public int scoreLeft = 0;
 	public int scoreRight = 0;
@@ -27,7 +28,6 @@ public class GameLogic {
 	
 	public boolean keyUParrowpressed;
 	public boolean keyDownarrowpressed;
-
 	
 	public GameLogic() {
 		//Gui.screenwidth = 800;
@@ -39,32 +39,24 @@ public class GameLogic {
 		keyLeftarrowpressed = false;
 		keyRightarrowpressed = false;
 		
-		
-		
-		
-		
 		// Objekte im Spiel:
-
 		Ball ball = new Ball((screenwidth/2)-(ballDiameter/2),(screenheight/2)-(ballDiameter/2), ballDiameter, ballDiameter);
 		spielObjekte.add(ball);
 		
-		BeweglichesRechteck leftPaddle = new BeweglichesRechteck(70, 100, 20, 100);
+		BeweglichesRechteck leftPaddle = new BeweglichesRechteck(70, 220, 20, 100);
 		spielObjekte.add(leftPaddle);
 		leftPaddle.richtung = 0; // Startrichtung
-		BeweglichesRechteck rightPaddle = new BeweglichesRechteck(710, 400, 20, 100);
+		BeweglichesRechteck rightPaddle = new BeweglichesRechteck(710, 220, 20, 100);
 		spielObjekte.add(rightPaddle);
 		//BeweglichesRechteck beispielObjekt3 = new BeweglichesRechteck(400, 400, 20, 20);
 		//spielObjekte.add(beispielObjekt3);
 		System.out.println("" + ((screenwidth/2)-(ballDiameter/2)) + "    " + ((screenheight/2)-(ballDiameter/2)) + "   " + ballDiameter);
 		
-
 		
 		gameTimer.scheduleAtFixedRate(new TimerTask(){
 			@Override
 			public void run() {
 				// Laufende Ausführungen im Spiel:
-
-			
 				
 				ball.move();
 				System.out.println(ball.positionX + "+" + ball.positionY);
@@ -81,8 +73,6 @@ public class GameLogic {
 				} else if (keyDownarrowpressed) {
 					rightPaddle.positionY += paddleSpeed;// Key Down
 				}
-				
-
 				
 			}
 		}, 0, 5);
@@ -106,8 +96,8 @@ public class GameLogic {
 					ball.yVelocity++;	//optional for more difficulty
 				else
 					ball.yVelocity--;
-				ball.setXDirection(ball.xVelocity);
-				ball.setYDirection(ball.yVelocity);
+					ball.setXDirection(ball.xVelocity);
+					ball.setYDirection(ball.yVelocity);
 			}
 			
 			if(intersects(ball, rightPaddle)) {
@@ -118,14 +108,14 @@ public class GameLogic {
 					ball.yVelocity++;	//optional for more difficulty
 				else
 					ball.yVelocity--;
-				ball.setXDirection(-ball.xVelocity);
-				ball.setYDirection(ball.yVelocity);
+					ball.setXDirection(-ball.xVelocity);
+					ball.setYDirection(ball.yVelocity);
 			}
 			
 			//give a leftPaddle point and ####later####  creates new paddles and ball ####later####
 			if(ball.positionX <= 0) {
 				scoreLeft++;
-				
+				newSet(ball);
 				//newPaddles();
 				//newBall();
 				System.out.println("Player 2:" + scoreLeft);
@@ -133,9 +123,24 @@ public class GameLogic {
 			//give the right paddle a point and ####later####creates new paddles and ball ####later####
 			if(ball.positionX >= screenwidth-ballDiameter) {
 				scoreRight++;
+				newSet(ball);
 				//newPaddles();
 				//newBall();
 				System.out.println("Player 1:" + scoreRight);
+			}
+			
+			if (leftPaddle.positionY <= 0) {
+				leftPaddle.positionY=0;
+			}
+			if(leftPaddle.positionY >= (screenheight - paddleHeight)) {
+				leftPaddle.positionY = screenheight - paddleHeight;
+			}
+			
+			if (rightPaddle.positionY <= 0) {
+				rightPaddle.positionY=0;
+			}
+			if (rightPaddle.positionY >= (screenheight - paddleHeight)) {
+				rightPaddle.positionY = screenheight - paddleHeight;
 			}
 	}
 	
@@ -145,4 +150,12 @@ public class GameLogic {
                 Paddle.positionY < ball.positionY + ballDiameter &&
                 Paddle.positionY + Paddle.groesseY > ball.positionY);
     }
+	
+	public void newSet(Ball ball) {
+		ball.setPosX((screenwidth/2)-(ballDiameter/2));
+		ball.setPosY((screenheight/2)-(ballDiameter/2));
+		ball.setDirection();
+		ball.move();
+		
+	}
 }

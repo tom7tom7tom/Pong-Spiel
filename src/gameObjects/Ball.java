@@ -46,6 +46,18 @@ public class Ball extends GameObject{
 			g.fillOval(positionX, positionY, groesseY, groesseX);
 		}
 		
+		public void setDirection() {
+			random = new Random();
+			int randomXDirection = random.nextInt(2);		//Gives us a number between 0 and 1 (0,1)
+			if(randomXDirection == 0)		//If our number is 0 the ball moves left
+				randomXDirection--;
+			setXDirection(randomXDirection*initialSpeed);
+			
+			int randomYDirection = random.nextInt(2);
+			if(randomYDirection == 0)		//If our number is 0 the ball moves up
+				randomYDirection--;
+			setYDirection(randomYDirection*initialSpeed);
+		}
 		
 
 

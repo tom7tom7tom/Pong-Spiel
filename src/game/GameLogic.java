@@ -59,7 +59,6 @@ public class GameLogic {
 				// Laufende Ausführungen im Spiel:
 				
 				ball.move();
-				System.out.println(ball.positionX + "+" + ball.positionY);
 				checkCollision(ball, rightPaddle, leftPaddle);
 				//beispielObjekt3.automatischeBallbewegung();
 				
@@ -83,7 +82,7 @@ public class GameLogic {
 			if(ball.positionY <= 0) {
 				ball.setYDirection(-ball.yVelocity);
 			}
-			if(ball.positionY >= screenheight - ballDiameter) {
+			if(ball.positionY >= screenheight - ballDiameter - 35) {
 				ball.setYDirection(-ball.yVelocity);
 			}
 		
@@ -128,15 +127,15 @@ public class GameLogic {
 			if (leftPaddle.positionY <= 0) {
 				leftPaddle.positionY=0;
 			}
-			if(leftPaddle.positionY >= (screenheight - paddleHeight)) {
-				leftPaddle.positionY = screenheight - paddleHeight;
+			if(leftPaddle.positionY >= (screenheight - paddleHeight -40)) {
+				leftPaddle.positionY = screenheight - paddleHeight -40;
 			}
 			
 			if (rightPaddle.positionY <= 0) {
 				rightPaddle.positionY=0;
 			}
-			if (rightPaddle.positionY >= (screenheight - paddleHeight)) {
-				rightPaddle.positionY = screenheight - paddleHeight;
+			if (rightPaddle.positionY >= (screenheight - paddleHeight -40)) {
+				rightPaddle.positionY = screenheight - paddleHeight -40;
 			}
 	}
 	

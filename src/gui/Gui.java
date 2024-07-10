@@ -19,6 +19,8 @@ public class Gui {
 		//spiellogik.screenheight = screenheight;
 		
 		frame = new JFrame();
+		//frame.setSize(1650,1080);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setSize(screenwidth, screenheight);
 		frame.setTitle("Pong");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

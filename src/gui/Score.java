@@ -24,13 +24,13 @@ public void paintComponent(Graphics g){
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		// Zeichne Hintergrund
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, 300, 300);		//Übermalen der Fläche des Scores (die Werte sind noch unpassen)
+		//g.setColor(Color.BLACK);
+		//g.fillRect(0, 0, 300, 300);		//Übermalen der Fläche des Scores (die Werte sind noch unpassen)
 		
 		// Zeichne alle Spielobjekte
-		String score = spiellogik.scoreLeft + " :";
+		String score = spiellogik.scoreLeft + " : " + spiellogik.scoreRight;
 		g.setColor(Color.WHITE);
-		g.drawChars(score.toCharArray(), 0, score.length(), 5, 15);		//Koordinaten für Text nicht mittig
+		g.drawChars(score.toCharArray(), 0, score.length(), 70, 15);		//Koordinaten für Text nicht mittig
 		
 		
 		repaint();

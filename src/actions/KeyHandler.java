@@ -5,39 +5,26 @@ import java.awt.event.KeyListener;
 
 import game.GameLogic;
 
-public class KeyHandler implements KeyListener 
-{
+public class KeyHandler implements KeyListener {
 
 	GameLogic gamelogic;
 
-	public KeyHandler(GameLogic spiellogik) 
-	{
+	public KeyHandler(GameLogic spiellogik) {
 		gamelogic = spiellogik;
 	}
 	
 	@Override
-	public void keyTyped(KeyEvent e) 
-	{
+	public void keyTyped(KeyEvent e) {
 
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) 
-	{
-
+	public void keyPressed(KeyEvent e) {
 
 		if (e.getKeyCode() == KeyEvent.VK_W) {
 			gamelogic.keyLeftarrowpressed = true;
 		
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) 
-		{
-			gamelogic.keyLeftarrowpressed = true;
-		
-		} 
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) 
-		{
 			gamelogic.keyRightarrowpressed = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
@@ -49,21 +36,11 @@ public class KeyHandler implements KeyListener
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e)
-	{
-
+	public void keyReleased(KeyEvent e) {
 
 		if (e.getKeyCode() == KeyEvent.VK_W) {
 			gamelogic.keyLeftarrowpressed = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) 
-		{
-			gamelogic.keyLeftarrowpressed = false;
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) 
-		{
-
 			gamelogic.keyRightarrowpressed = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
@@ -72,4 +49,5 @@ public class KeyHandler implements KeyListener
 			gamelogic.keyDownarrowpressed = false;
 		}
 	}
+
 }

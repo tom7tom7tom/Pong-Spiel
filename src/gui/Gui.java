@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import actions.KeyHandler;
 import game.GameLogic;
 
-
 public class Gui {
 	
 	public int screenwidth = 800;
@@ -18,21 +17,10 @@ public class Gui {
 		//screenheight = 600;
 		//spiellogik.screenwidth = screenwidth;
 		//spiellogik.screenheight = screenheight;
-
-public class Gui 
-{	
-	private int screenwidth;
-	private int screenheight;
-	private JFrame frame;
-	
-	public Gui(GameLogic spiellogik) 
-	{
-		screenwidth = 800;
-		screenheight = 600;
-		spiellogik.screenwidth = screenwidth;
-		spiellogik.screenheight = screenheight;
-
+		
 		frame = new JFrame();
+		//frame.setSize(1650,1080);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setSize(screenwidth, screenheight);
 		frame.setTitle("Pong");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

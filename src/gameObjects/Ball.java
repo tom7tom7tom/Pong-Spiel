@@ -10,8 +10,8 @@ import game.GameObject;
 
 public class Ball extends GameObject{
 		Random random;
-		public int xVelocity;
-		public int yVelocity;
+		public double xVelocity;
+		public double yVelocity;
 		public int initialSpeed = 1;
 		
 		public Ball(int x, int y, int width, int height) {
@@ -28,11 +28,11 @@ public class Ball extends GameObject{
 			setYDirection(randomYDirection*initialSpeed);
 		}
 		
-		public void setXDirection(int randomXDirection) {
+		public void setXDirection(double randomXDirection) {
 			xVelocity = randomXDirection;
 		}
 		
-		public void setYDirection(int randomYDirection) {
+		public void setYDirection(double randomYDirection) {
 			yVelocity = randomYDirection;
 		}
 		

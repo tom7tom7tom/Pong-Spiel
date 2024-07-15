@@ -1,7 +1,8 @@
 package game;
 
-public class GameObject
-{
+import java.awt.Color;
+
+public class GameObject {
 
 	public int groesseX;
 	public int groesseY;
@@ -9,9 +10,10 @@ public class GameObject
 	public int positionX;
 	public int positionY;
 	
+	public Color color = Color.white;
+	
 
-	public GameObject(int posX, int posY, int breite, int hoehe)
-	{
+	public GameObject(int posX, int posY, int breite, int hoehe) {
 		positionX = posX;
 		positionY = posY;
 		groesseX = breite;

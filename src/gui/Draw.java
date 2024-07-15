@@ -7,26 +7,23 @@ import javax.swing.JLabel;
 
 import game.GameLogic;
 import game.GameObject;
+import gameObjects.Ball;
+import gameObjects.BeweglichesRechteck;
 
 @SuppressWarnings("serial")
-public class Draw extends JLabel
-{
+public class Draw extends JLabel{
 	
 	private int screenwidth;
 	private int screenheight;
 	ArrayList<GameObject> objekteImSpiel;
-	
-	boolean isBall = true;
 
-	public Draw(GameLogic spiellogik, int screenBreite, int screenHoehe)
-	{
+	public Draw(GameLogic spiellogik, int screenBreite, int screenHoehe) {
 		objekteImSpiel = spiellogik.spielObjekte;
 		screenwidth = screenBreite;
 		screenheight = screenHoehe;
 	}
 	
-	public void paintComponent(Graphics g)
-	{
+	public void paintComponent(Graphics g){
 		
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
@@ -38,24 +35,21 @@ public class Draw extends JLabel
 		
 		// Zeichne alle Spielobjekte
 		g.setColor(Color.WHITE);
-		for (int i = 0; i < objekteImSpiel.size(); i++)
-		{
+		for (int i = 0; i < objekteImSpiel.size(); i++) {
+			//isBallfale?
 			GameObject aktuellesObjekt = objekteImSpiel.get(i);
-			if(isBall) {
+			if(aktuellesObjekt instanceof Ball) {
+				g.setColor(Color.WHITE);
 				g.fillOval(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
-				isBall = false;
+						
+			}else if(aktuellesObjekt instanceof BeweglichesRechteck){
+				g.setColor(aktuellesObjekt.color);
+				g.fillRect(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
 			}
-			g.fillRect(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
-				
 			
 		}
 		
-			//g.fillOval(ball.positionX, ball.positionY, Ball.class, groesseX);
-		
-		
-		
-		
-		
+				
 		repaint();
 	}
 	

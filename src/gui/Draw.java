@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import game.GameLogic;
 import game.GameObject;
+import gameObjects.Ball;
 
 @SuppressWarnings("serial")
 public class Draw extends JLabel{
@@ -14,8 +15,6 @@ public class Draw extends JLabel{
 	private int screenwidth;
 	private int screenheight;
 	ArrayList<GameObject> objekteImSpiel;
-	
-	boolean isBall = true;
 
 	public Draw(GameLogic spiellogik, int screenBreite, int screenHoehe) {
 		objekteImSpiel = spiellogik.spielObjekte;
@@ -38,18 +37,17 @@ public class Draw extends JLabel{
 		for (int i = 0; i < objekteImSpiel.size(); i++) {
 			//isBallfale?
 			GameObject aktuellesObjekt = objekteImSpiel.get(i);
-			if(isBall) {
+			if(aktuellesObjekt instanceof Ball) {
 				g.fillOval(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
 				System.out.println(aktuellesObjekt);
-				isBall = false;
-			}
+		
+			}else {
 			g.fillRect(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
-				
+			}
 			
 		}
 		
 			//g.fillOval(ball.positionX, ball.positionY, Ball.class, groesseX);
-		
 		
 		
 		

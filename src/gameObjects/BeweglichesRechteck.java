@@ -1,5 +1,7 @@
 package gameObjects;
 
+import java.awt.Color;
+import java.awt.*;
 import game.GameObject;
 
 public class BeweglichesRechteck extends GameObject {
@@ -119,4 +121,9 @@ public class BeweglichesRechteck extends GameObject {
 				}
 				
 	}
+		
+		public void drawRec(Graphics g) {
+			g.setColor(Color.white);
+			g.fillRect(positionX, positionY, groesseY, groesseX);
+		}
 }

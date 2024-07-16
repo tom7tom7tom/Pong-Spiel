@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 
 import game.GameLogic;
 import game.GameObject;
+import gameObjects.Ball;
+import gameObjects.BeweglichesRechteck;
 
 @SuppressWarnings("serial")
 public class Draw extends JLabel{
@@ -34,10 +36,22 @@ public class Draw extends JLabel{
 		// Zeichne alle Spielobjekte
 		g.setColor(Color.WHITE);
 		for (int i = 0; i < objekteImSpiel.size(); i++) {
+			//isBallfale?
 			GameObject aktuellesObjekt = objekteImSpiel.get(i);
-			g.fillRect(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
+			if(aktuellesObjekt instanceof Ball) {
+				g.setColor(Color.WHITE);
+				g.fillOval(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
+						
+			}else if(aktuellesObjekt instanceof BeweglichesRechteck){
+				g.setColor(aktuellesObjekt.color);
+				g.fillRect(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
+			}
+			//line in the middle
+			g.setColor(Color.WHITE);
+			g.drawLine(screenwidth/2, 0, screenwidth/2, screenheight);
 		}
 		
+				
 		repaint();
 	}
 	
